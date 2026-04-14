@@ -1,11 +1,19 @@
-# AI Interview Preparation Platform
+# AI-Powered Interview Preparation Platform
 
-AI Interview Preparation Platform is a Spring Boot backend project that helps users practice interview questions, track performance, and analyze weak areas.
+## Overview
+
+This project is a backend system that simulates an AI interview platform.  
+It allows users to ask interview questions, receive AI-generated answers, track history, analyze performance, and export data.
+
+The system demonstrates real-world backend development using Spring Boot and REST APIs.
+
+---
 
 ## Features
 
-- Interview question evaluation
-- Score and feedback generation
+- Ask interview questions
+- AI-style answer generation
+- Score evaluation and feedback
 - History tracking
 - Search by keyword
 - Filter by category and difficulty
@@ -14,6 +22,10 @@ AI Interview Preparation Platform is a Spring Boot backend project that helps us
 - CSV export
 - Validation and exception handling
 - Health and system APIs
+- API key security
+- Swagger API documentation
+
+---
 
 ## Tech Stack
 
@@ -23,32 +35,47 @@ AI Interview Preparation Platform is a Spring Boot backend project that helps us
 - H2 Database
 - Swagger UI
 - Maven
+- REST APIs
+
+---
 
 ## API Base Path
 
 /api/v1
 
+---
+
 ## Important APIs
 
 POST /api/v1/ask  
 GET /api/v1/history  
-GET /api/v1/leaderboard/topics  
-GET /api/v1/system/health  
+GET /api/v1/summary  
+GET /api/v1/recommendation  
+GET /api/v1/leaderboard  
+GET /api/v1/export/csv  
 
-## How to Run
+---
 
-1. Open project in Eclipse
-2. Run AiPlatformApplication
-3. Open Swagger UI
+## How to Run the Project
 
-## Swagger URL
+1. Clone the repository
+
+git clone https://github.com/kuldeepshah9578/ai-interview-preparation-platform.git
+
+2. Open in Eclipse
+
+3. Run:
+
+AiPlatformApplication.java
+
+4. Open Swagger:
 
 http://localhost:9091/swagger-ui/index.html
 
-## Database Console
-
-http://localhost:9091/h2-console
+---
 
 ## Author
 
-Kuldeep Kumar Shah
+Kuldeep Kumar Shah  
+Java Backend Developer  
+Open to Software Developer Roles
