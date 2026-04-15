@@ -32,7 +32,7 @@ The system demonstrates real-world backend development using Spring Boot and RES
 - Java 17
 - Spring Boot
 - Spring Data JPA
-- H2 Database
+- MySQL
 - Swagger UI
 - Maven
 - REST APIs
