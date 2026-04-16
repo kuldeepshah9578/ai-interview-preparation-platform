@@ -74,6 +74,18 @@ http://localhost:9091/swagger-ui/index.html
 
 ---
 
+## Screenshots
+
+### Home Page
+![Home Page](screenshots/home-page.png)
+
+### History Page
+![History Page](screenshots/history-page.png)
+
+### Dashboard Page
+![Dashboard Page](screenshots/dashboard-page.png)
+
+
 ## Author
 
 Kuldeep Kumar Shah  
