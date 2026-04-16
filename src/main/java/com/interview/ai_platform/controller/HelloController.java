@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.interview.ai_platform.dto.AskRequest;
 import com.interview.ai_platform.dto.AskResponse;
+import com.interview.ai_platform.dto.AverageScoreResponse;
 import com.interview.ai_platform.dto.HealthResponse;
 import com.interview.ai_platform.dto.RecommendationResponse;
 import com.interview.ai_platform.dto.SummaryResponse;
 import com.interview.ai_platform.dto.TopTopicResponse;
+import com.interview.ai_platform.dto.TotalAttemptsResponse;
+import com.interview.ai_platform.dto.TotalScoreResponse;
+import com.interview.ai_platform.dto.WelcomeResponse;
 import com.interview.ai_platform.model.InterviewRecord;
 import com.interview.ai_platform.service.InterviewService;
-import com.interview.ai_platform.dto.TotalScoreResponse;
-import com.interview.ai_platform.dto.AverageScoreResponse;
-import com.interview.ai_platform.dto.TotalAttemptsResponse;
-import com.interview.ai_platform.dto.WelcomeResponse;
 
 @RestController
 @RequestMapping("/api/v1")
