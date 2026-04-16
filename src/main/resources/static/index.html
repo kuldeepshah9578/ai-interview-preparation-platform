@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Interview Preparation Platform</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav {
+            background: #1f3c88;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1f3c88;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        input, select, textarea, button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            background: #1f3c88;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #16306d;
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8fafc;
+            border-left: 5px solid #1f3c88;
+            border-radius: 10px;
+        }
+
+        .result-box h2 {
+            margin-top: 0;
+            color: #1f3c88;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            color: #1f3c88;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <a href="/index.html">Home</a>
+    <a href="/history.html">History</a>
+    <a href="/dashboard.html">Dashboard</a>
+</div>
+
+<div class="container">
+    <h1>AI Interview Preparation Platform</h1>
+<p>Practice technical interview questions, receive AI-style evaluation, and track your improvement with analytics and history.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-bottom:25px;">
+    <div style="background:#f8fafc;padding:18px;border-radius:10px;text-align:center;border-left:4px solid #1f3c88;">
+        <h3 style="margin:0;color:#1f3c88;">AI Evaluation</h3>
+        <p style="margin-top:10px;color:#444;">Get score and feedback instantly</p>
+    </div>
+    <div style="background:#f8fafc;padding:18px;border-radius:10px;text-align:center;border-left:4px solid #1f3c88;">
+        <h3 style="margin:0;color:#1f3c88;">History Tracking</h3>
+        <p style="margin-top:10px;color:#444;">Store all interview attempts</p>
+    </div>
+    <div style="background:#f8fafc;padding:18px;border-radius:10px;text-align:center;border-left:4px solid #1f3c88;">
+        <h3 style="margin:0;color:#1f3c88;">Analytics</h3>
+        <p style="margin-top:10px;color:#444;">Track score, topic, and progress</p>
+    </div>
+</div>
+
+    <label for="question">Question</label>
+    <textarea id="question" placeholder="Enter your interview question"></textarea>
+
+    <label for="category">Category</label>
+    <select id="category">
+        <option value="">Select category</option>
+        <option value="Java">Java</option>
+        <option value="Spring Boot">Spring Boot</option>
+        <option value="SQL">SQL</option>
+        <option value="Python">Python</option>
+        <option value="OOPS">OOPS</option>
+    </select>
+
+    <label for="difficulty">Difficulty</label>
+    <select id="difficulty">
+        <option value="">Select difficulty</option>
+        <option value="Easy">Easy</option>
+        <option value="Medium">Medium</option>
+        <option value="Hard">Hard</option>
+    </select>
+
+    <button onclick="submitQuestion()">Get AI Evaluation</button>
+
+    <div id="loading" class="loading hidden">Loading response...</div>
+
+    <div id="result" class="result-box hidden">
+        <h2>Evaluation Result</h2>
+        <p><strong>Answer:</strong> <span id="answer"></span></p>
+        <p><strong>Score:</strong> <span id="score"></span></p>
+        <p><strong>Feedback:</strong> <span id="feedback"></span></p>
+    </div>
+</div>
+
+<script>
+    async function submitQuestion() {
+        const question = document.getElementById("question").value;
+        const category = document.getElementById("category").value;
+        const difficulty = document.getElementById("difficulty").value;
+
+        const loading = document.getElementById("loading");
+        const result = document.getElementById("result");
+
+        loading.classList.remove("hidden");
+        result.classList.add("hidden");
+
+        try {
+            const response = await fetch("/api/v1/ask", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    question: question,
+                    category: category,
+                    difficulty: difficulty
+                })
+            });
+
+            const data = await response.json();
+
+            document.getElementById("answer").textContent = data.answer || "No answer";
+            document.getElementById("score").textContent = data.score || "No score";
+            document.getElementById("feedback").textContent = data.feedback || "No feedback";
+
+            result.classList.remove("hidden");
+        } catch (error) {
+            alert("Error connecting to backend.");
+            console.error(error);
+        } finally {
+            loading.classList.add("hidden");
+        }
+    }
+</script>
+
+<footer style="text-align:center;padding:20px;color:#666;font-size:14px;">
+    Built by Kuldeep Kumar Shah | AI-Powered Interview Preparation Platform
+</footer>
+
+</body>
+</html>
